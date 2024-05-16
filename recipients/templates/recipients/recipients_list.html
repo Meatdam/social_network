@@ -1,0 +1,29 @@
+
+{% extends 'recipients/base.html' %}
+
+
+{% block content %}
+
+
+    <div class="row row-cols-1 row-cols-md-3 m-5 text-center">
+      {% for recipients in object_list %}
+        <div class="col">
+          <div class="card mb-3 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+              <h2 class="my-0 fw-normal">{{ recipients.name }}</h2>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title pricing-card-title">{{ recipients.description | slice:":100" }}</h4>
+              <p>Почта: {{ recipients.email }}</p>
+              <a class="btn btn-primary" href="{% url 'recipients:view' recipients.pk %}" role="button">Просмотреть</a>
+
+                <a class="btn btn-warning" href="{% url 'recipients:edit' recipients.pk %}" role="button">Изменить</a>
+                <a class="btn btn-danger" href="{% url 'recipients:delete' recipients.pk %}" role="button">Удалить</a>
+
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+{% endblock %}
