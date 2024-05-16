@@ -24,7 +24,7 @@ ________
 Для запуска проекта необходимо сделать 
 1. git clone репозитория
 ```
-git@github.com:Meatdam/online_shop.git
+git@github.com:Meatdam/social_network.git
 ```
 2. Установить виртуальное окружение ```venv```
 ```
