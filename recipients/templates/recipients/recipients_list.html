@@ -15,10 +15,10 @@
             <div class="card-body">
               <h4 class="card-title pricing-card-title">{{ recipients.description | slice:":100" }}</h4>
               <p>Почта: {{ recipients.email }}</p>
-              <a class="btn btn-primary" href="{% url 'recipients:view' recipients.pk %}" role="button">Просмотреть</a>
+              <a class="btn btn-primary w-100 mb-1" href="{% url 'recipients:view' recipients.pk %}" role="button">Просмотреть</a>
 
-                <a class="btn btn-warning" href="{% url 'recipients:edit' recipients.pk %}" role="button">Изменить</a>
-                <a class="btn btn-danger" href="{% url 'recipients:delete' recipients.pk %}" role="button">Удалить</a>
+                <a class="btn btn-warning w-100 mb-1" href="{% url 'recipients:edit' recipients.pk %}" role="button">Изменить</a>
+                <a class="btn btn-danger w-100" href="{% url 'recipients:delete' recipients.pk %}" role="button">Удалить</a>
 
             </div>
           </div>

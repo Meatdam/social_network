@@ -1,0 +1,21 @@
+{% load static %}
+
+
+<!doctype html>
+<html lang="ru" data-bs-theme="dark">
+<head>
+    <script src="{% static 'js/color-modes.js' %}"></script>
+    <title>{{ title }}</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+</head>
+<body>
+
+{% block content %}
+
+{% endblock %}
+
+</body>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/fontawesome-icons.js' %}" crossorigin="anonymous"></script>
