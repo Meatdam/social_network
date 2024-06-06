@@ -17,8 +17,8 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # DB settings
-LOAD_ENV = BASE_DIR / '.env'
-load_dotenv(LOAD_ENV)
+PATH_DB = BASE_DIR / '.env'
+load_dotenv(PATH_DB)
 
 DOMAIN_NAME = 'http://localhost:8000'
 
