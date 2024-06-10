@@ -1,0 +1,27 @@
+{% extends 'recipients/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="row row-cols-1 row-cols-md-3 m-5 text-center">
+    {% for blog in object_list %}
+    <div class="col">
+        <div class="card mb-3 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+                <h5 class="my-0 fw-normal">{{ blog.title }}</h5>
+            </div>
+            <div class="card-body">
+                <img class="card-img-top mb-3" src="{{ blog.image | media_filter }}" alt="">
+                <p class="card-title pricing-card-title">{{ blog.content | slice:"100" }}</p>
+                <a class="btn btn-primary w-100 mb-1" href="{% url 'blog:detail_blog' blog.pk %}" role="button">Просмотреть</a>
+                {% if user.is_superuser or perms.blog.change_blog %}
+                <a class="btn btn-warning w-100 mb-1" href="{% url 'blog:edit_blog' blog.pk %}" role="button">Изменить</a>
+                {% endif %}
+                {% if user.is_superuser or perms.blog.delete_blog %}
+                <a class="btn btn-danger w-100" href="{% url 'blog:delete_blog' blog.pk %}" role="button">Удалить</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
