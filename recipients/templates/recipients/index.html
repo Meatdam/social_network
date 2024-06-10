@@ -1,5 +1,53 @@
 {% extends 'recipients/base.html' %}
+{% load my_tags %}
 {% block content %}
+<div class="row align-items-md-stretch mb-5 text-white">
+    <div class="col-md-4">
+        <div class="p-5 bg-body-tertiary border rounded-3">
+            <h1 class="display-1"><strong>{{ mailing_settings }}</strong></h1>
+            <h1 class="display-5">Количество рассылок всего</h1>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="p-5 bg-body-tertiary border rounded-3">
+            <h1 class="display-1"><strong>{{ active_mailings }}</strong></h1>
+            <h1 class="display-5">Количество активных рассылок</h1>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="p-5 bg-body-tertiary border rounded-3">
+            <h1 class="display-1"><strong>{{ recipient }}</strong></h1>
+            <h1 class="display-5">Количество уникальных клиентов</h1>
+        </div>
+    </div>
+</div>
+<div class="news text-center bg-white p-3 mb-5" style="border-radius:20px;">
+<h2>Свежи новости</h2>
+    <h4>Будте вкурсе всех последних новостей, нажмите кнопку <strong>"Подписаться"</strong>! </h4>
+    <h4>В разделе <strong>"Блог"</strong>, вы найдете все свежие новости!</h4>
+</div>
 
+<div class="row row-cols-1 row-cols-md-3 text-center">
+  {% for object in blog %}
+            <div class="col">
+          <div class="card h-100">
+            <div class="card-header py-3">
+              <h4 class="my-0 fw-normal">{{ object.title|capfirst|truncatechars:20 }}</h4>
+            </div>
+              <img class="card-img-top mb-3 p-2" src="{{ object.image | media_filter }}" alt="">
+            <div class="card-body">
+
+
+
+                <p class="card-title pricing-card-title">{{ object.created_at.date }}</p>
+                <p class="card-title pricing-card-title">{{ object.content|truncatechars:50 }}</p>
+              <a class="btn btn-primary" href="{% url 'blog:detail_blog' object.pk %}" role="button">Просмотреть</a>
+            </div>
+          </div>
+        </div>
+
+
+  {% endfor %}
+    </div>
 
 {% endblock %}
