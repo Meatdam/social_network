@@ -42,7 +42,6 @@ class UserRegistrationCreateView(TitleMixin, SuccessMessageMixin, CreateView):
     title = 'Регистрация'
 
     def form_valid(self, form):
-
         user = form.save()
         user.is_active = False
 
@@ -81,7 +80,7 @@ class ConfirmRegister(TitleMixin, TemplateView):
             user.is_active = True
             user.save()
             return render(request, 'users/email_verification.html')
-        return redirect('catalog:index')
+        return redirect('mailing:list')
 
 
 class ProfileUpdateView(TitleMixin, UpdateView):
@@ -112,7 +111,7 @@ def logout(request):
     :return: HttpResponseRedirect(reverse('index'))
     """
     auth.logout(request)
-    return HttpResponseRedirect(reverse('mailing:list'))
+    return HttpResponseRedirect(reverse('users:login'))
 
 
 def reset_password(request):
