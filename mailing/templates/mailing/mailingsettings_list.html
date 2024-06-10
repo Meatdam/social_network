@@ -5,6 +5,7 @@
 
 <div class="row row-cols-1 row-cols-md-3 m-5 text-center">
   {% for object in object_list %}
+    {% if user == object.owner or user.is_superuser or perms.mailing.change_mailingsettings_settings_status %}
             <div class="col">
           <div class="card mb-4 rounded-3 shadow-sm">
             <div class="card-header py-3">
@@ -20,6 +21,7 @@
             </div>
           </div>
         </div>
+    {% endif %}
   {% endfor %}
 </div>
 
