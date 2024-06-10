@@ -41,9 +41,21 @@ pip install -r requirements.txt
 ```
 6. Создать файл .env в корне проекта и заполнить следующие данные:
 ```
-USER_DB= имя пользователя от вашей БД
-PASSWORD_DB= пароль от БД
-EMAIL_HOST_USER_MAIL= email адрес от которого будут приходит письма при регистрации (указать необходимо существующий адрес)
-EMAIL_HOST_PASSWORD_MAIL=пороль от email (как правило на email приходит сообщение о создании проложения, и выдаст пороль, куда надо будет вставить сюда)
+SECRET_KEY=
+
+DEBUG=
+
+POSTGRES_DB=
+POSTGRES_PASSWORD=
+POSTGRES_USER=
+
+EMAIL_HOST_USER_MAIL=
+EMAIL_HOST_PASSWORD_MAIL=
+
+ADMIN_EMAIL=
+
+CACHE_ENABLED=
+CACHES_BACKEND=
+CACHES_LOCATION=
 ```
 
