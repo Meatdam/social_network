@@ -1,0 +1,25 @@
+{% extends 'recipients/base.html' %}
+{% block content %}
+<div class="modal modal-sheet position-static d-block bg-transparent p-4 py-md-5">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-3 shadow">
+            <div class="modal-body p-4 text-center">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                        {{ form.as_p }}
+
+                    <button type="submit" class="btn btn-lg btn-primary">
+                        {% if object %}
+                            Изменить
+                        {% else %}
+                            Добавить
+                        {% endif %}
+                    </button>
+                 <a class="btn btn-lg btn-secondary" href="{% url 'blog:blog_list' %}" >Назад</a>
+
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

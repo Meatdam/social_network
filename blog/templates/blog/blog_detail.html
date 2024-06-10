@@ -1,0 +1,28 @@
+{% extends 'recipients/base.html' %}
+{% block content %}
+{% load my_tags %}
+<div class="row ">
+    <div class="col-lg-4 col-md-6 ">
+        <div class="card h-80 ">
+            {% if object.image %}
+            <img class="card-img-top" src="{{ object.image | media_filter }}" alt="">
+            {% endif %}
+
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="card h-80 bg-transparent text-white" style="width: 42rem ">
+            <div class="card-header">
+                <h4>{{ object.title }}</h4>
+            </div>
+            <div class="card-body">
+
+                <p class="card-text">{{ object.content }}</p>
+            </div>
+            <div class="card-footer">
+                Просмотры: {{ object.view_count }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

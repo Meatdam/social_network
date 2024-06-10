@@ -1,0 +1,26 @@
+{% extends 'recipients/style_modal.html' %}
+{% block content %}
+<div class="modal modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog"
+     id="modalSheet">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-body p-3">
+                <p class="card-text"><strong>Статус:</strong> {{ object.status }} </p>
+                <p class="card-text"><strong>Ответ сервера:</strong> {{ object.mailing_response }} </p>
+                <p class="card-text"><strong>Последняя дата отправки:</strong> {{ object.last_datetime }}</p>
+                <p class="card-text"><strong>Сообщение рассылки:</strong> {{ object.mailing_list }}
+                </p>
+                <div class="group">
+                </div>
+
+                <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+                    <a class="btn btn-lg btn-secondary" href="{% url 'mailing:status_list' %}" role="button">Назад</a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="b-example-divider"></div>
+{% endblock %}

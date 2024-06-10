@@ -1,0 +1,24 @@
+{% extends 'recipients/base.html' %}
+
+{% block content %}
+
+<div class="row row-cols-1 row-cols-md-3 m-5 text-center">
+  {% for object in object_list %}
+            <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+              <h2 class="my-0 fw-normal">Статус: {{ object.status }}</h2>
+            </div>
+            <div class="card-body">
+                <p class="card-title pricing-card-title"><strong>Ответ сервера:</strong> {{ object.mailing_response }}</p>
+                <p class="card-title pricing-card-title"><strong>Последняя дата отправки:</strong> {{ object.last_datetime }}</p>
+                <p class="card-title pricing-card-title"><strong>Сообщение рассылки:</strong> </p><p>{{ object.mailing_list|truncatechars:50 }}</p>
+              <a class="btn btn-primary" href="{% url 'mailing:status_view' object.pk %}" role="button">Просмотреть</a>
+            </div>
+          </div>
+        </div>
+
+  {% endfor %}
+</div>
+
+{% endblock %}

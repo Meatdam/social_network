@@ -1,0 +1,17 @@
+{% load static %}
+
+<div class="row text-center">
+    <form action="{% url 'recipients:create' %}" method="post">
+        {% csrf_token %}
+        <div class="row text-white">
+            <div class="container">
+                <h5>Подписка на рассылку</h5>
+                <p>Подпишитесь на нас, будьте вкурсе все последних новостей, акций, промокодов! Мы ценим каждого из вас!
+                </p>
+                {{ recipients_form }}
+                <button class="btn btn btn-primary mt-3 mb-5" type="submit">Подписаться</button>
+            </div>
+
+        </div>
+    </form>
+</div>

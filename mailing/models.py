@@ -1,6 +1,7 @@
 from django.db import models
 
 from recipients.models import Recipients
+from users.models import User
 
 NULLABLE = {'blank': True, 'null': True}
 
@@ -10,8 +11,12 @@ LOGS_STATUS_CHOICES = [('success', 'успешно'), ('fail', 'неуспешн
 
 
 class MailingMessage(models.Model):
+    """
+    Модель сообщения для рассылки
+    """
     title = models.CharField(max_length=150, verbose_name='заголовок')
     content = models.TextField(verbose_name='содержание')
+    owner = models.ForeignKey(to=User, on_delete=models.CASCADE, verbose_name='Менеджер рассылок', **NULLABLE)
 
     def __str__(self):
         return self.title
@@ -22,6 +27,9 @@ class MailingMessage(models.Model):
 
 
 class MailingSettings(models.Model):
+    """
+    Модель клиентов, которым будет направлена рассылка
+    """
     first_datetime = models.DateTimeField(verbose_name='начало рассылки', auto_now_add=True)
     next_datetime = models.DateTimeField(verbose_name='next_datetime', **NULLABLE)
     end_time = models.DateTimeField(verbose_name='конец рассылки', **NULLABLE)
@@ -30,6 +38,7 @@ class MailingSettings(models.Model):
     recipients = models.ManyToManyField(Recipients, verbose_name='получатели')
     settings_status = models.CharField(max_length=50, verbose_name='статус рассылки', choices=STATUS_OF_NEWSLETTER,
                                        default='Create')
+    owner = models.ForeignKey(to=User, on_delete=models.CASCADE, verbose_name='Менеджер рассылок', **NULLABLE)
 
     def __str__(self):
         return f'{self.message} отправляется каждый {self.sending_period} с {self.first_datetime}'
@@ -37,9 +46,15 @@ class MailingSettings(models.Model):
     class Meta:
         verbose_name = 'Настройка отправки'
         verbose_name_plural = 'Настройки отправки'
+        permissions = [
+            ('change_mailingsettings_settings_status', 'Can change mailingsettings settings status'),
+        ]
 
 
 class MailingStatus(models.Model):
+    """
+    Модель статуса отправки рассылки
+    """
     last_datetime = models.DateTimeField(auto_now_add=True, verbose_name='последняя дата отправки')
     status = models.CharField(max_length=50, choices=LOGS_STATUS_CHOICES, default='', verbose_name='статус попытки')
     mailing_response = models.TextField(verbose_name='ответ сервера')

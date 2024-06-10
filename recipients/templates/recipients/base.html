@@ -1,3 +1,4 @@
+{% load footer_tags %}
 {% load static %}
 
 
@@ -20,6 +21,16 @@
     {% include 'includes/inc_menu.html' %}
     {% block content %}{% endblock %}
 
+  <footer class="d-flex flex-wrap justify-content-between py-3 my-4 border-top" style="position: absolute; ">
+    <div class="col-md-4 d-flex">
+
+      <span class="mb-3 mb-md-0 text-body-secondary text-white">&copy; {% now 'Y' %} Social Network</span>
+    </div>
+
+    <div class="nav col-md-8">
+     {% client_form %}
+    </div>
+  </footer>
 
 </div>
 <script src="{% static 'js/jquery.min.js' %}"></script>

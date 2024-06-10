@@ -2,13 +2,19 @@ from django import forms
 
 from common.views import StyleFormMixin
 from mailing.models import MailingSettings, MailingMessage
+from recipients.models import Recipients
 
 
 class AddMailingSetingsForm(StyleFormMixin, forms.ModelForm):
-
+    """
+    Класс для работы с формой "AddMailingSetingsForm" для рассылки
+    """
     def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop("request")
+        user = self.request.user
         super().__init__(*args, **kwargs)
-        self.fields['message'].empty_label = "Сообщение не выбрано"
+        self.fields["recipients"].queryset = Recipients.objects.filter(owner=user)
+        self.fields["message"].queryset = MailingMessage.objects.filter(owner=user)
 
     class Meta:
         model = MailingSettings
@@ -16,8 +22,18 @@ class AddMailingSetingsForm(StyleFormMixin, forms.ModelForm):
 
 
 class StyleForm(StyleFormMixin, forms.ModelForm):
+    """
+    Класс для работы с формой "StyleForm"
+    """
     class Meta:
         model = MailingMessage
         fields = ('title', 'content')
 
 
+class ModeratorMailingSettingsForm(StyleFormMixin, forms.ModelForm):
+    """
+    Форма для модератора рассылки.
+    """
+    class Meta:
+        model = MailingSettings
+        fields = ('settings_status',)

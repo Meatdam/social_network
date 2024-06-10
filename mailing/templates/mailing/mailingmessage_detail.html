@@ -14,8 +14,10 @@
             </div>
 
                 <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+                    {% if user == object.owner or user.is_superuser %}
                     <a class="btn btn-lg btn-warning" href="{% url 'mailing:edit' object.pk %}" role="button">Изменить</a>
                     <a class="btn btn-lg btn-danger" href="{% url 'mailing:delete' object.pk %}" role="button">Удалить</a>
+                    {% endif %}
                     <a class="btn btn-lg btn-secondary" href="{% url 'mailing:list' %}" role="button">Назад</a>
                 </div>
 
