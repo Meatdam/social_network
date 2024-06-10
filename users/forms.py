@@ -8,6 +8,7 @@ class UserLoginForm(StyleFormMixin, AuthenticationForm):
     """
     Класс для работы с формой "UserLoginForm"
     """
+
     class Meta:
         model = User
         fields = ('email', 'password')
@@ -31,4 +32,3 @@ class UserProfileForm(StyleFormMixin, UserChangeForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'image', 'email', 'phone', 'country')
-
