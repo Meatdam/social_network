@@ -4,17 +4,19 @@
 
     <div class="row row-cols-1 row-cols-md-3 m-5 text-center">
       {% for mail in object_list %}
+        {% if user == mail.owner or user.is_superuser or perms.mailing.view_mailingmessage %}
         <div class="col">
-          <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card mb-4 rounded-3 shadow-sm" style="height: 230px;">
             <div class="card-header py-3">
-              <h2 class="my-0 fw-normal">{{ mail.title }}</h2>
+              <h5 class="my-0 fw-normal">{{ mail.title }} (id: {{ mail.id }})</h5>
             </div>
             <div class="card-body">
-              <p class="card-title pricing-card-title">{{ mail.content | slice:":100" }}</p>
+              <p class="card-title pricing-card-title">{{ mail.content|truncatechars:50 }}</p>
               <a class="btn btn-primary" href="{% url 'mailing:view' mail.pk %}" role="button">Просмотреть</a>
             </div>
           </div>
         </div>
+        {% endif %}
       {% endfor %}
     </div>
 
