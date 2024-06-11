@@ -80,6 +80,9 @@ class MailingSettingsCreateView(TitleMixin, LoginRequiredMixin, CreateView):
     title = 'Добавление рассылки'
 
     def get_form_kwargs(self):
+        """
+        Приминение фильтрации в форме на создание рассылки
+        """
         kwargs = super().get_form_kwargs()
         kwargs.update({'request': self.request})
         return kwargs
@@ -131,8 +134,6 @@ class MailingSettingsListView(TitleMixin, LoginRequiredMixin, ListView):
     model = MailingSettings
     title = 'Планирование рассылки'
     permission_required = 'mailing.view_mailingsettings'
-
-
 
 
 class MailingSettingsDetailView(TitleMixin, LoginRequiredMixin, DetailView):
