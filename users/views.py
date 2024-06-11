@@ -42,6 +42,10 @@ class UserRegistrationCreateView(TitleMixin, SuccessMessageMixin, CreateView):
     title = 'Регистрация'
 
     def form_valid(self, form):
+        """
+        Провекра формы на валидность, если форма валидна,
+        отправляется письмо на почту с 8 значным паролем для подтверждения почты
+        """
         user = form.save()
         user.is_active = False
 
@@ -59,6 +63,9 @@ class UserRegistrationCreateView(TitleMixin, SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
+        """
+        Перенаправление на страницу успешной регистрации
+        """
         return reverse_lazy('users:confirm')
 
 
@@ -73,6 +80,9 @@ class ConfirmRegister(TitleMixin, TemplateView):
         return render(request, 'users/register_confirm.html')
 
     def post(self, request, *args, **kwargs):
+        """
+        Проверка пользователя на введение корректного кода регистрации
+        """
         token = int(request.POST.get('verification_code'))
         user = get_object_or_404(User, verification_code=token)
 
@@ -115,6 +125,9 @@ def logout(request):
 
 
 def reset_password(request):
+    """
+    Функция сброса пароля, создает сгенерированный новый пароль
+    """
     context = {
         'success_message': 'Пароль успешно сброшен. Новый пароль был отправлен на ваш адрес электронной почты.',
     }

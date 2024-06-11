@@ -10,6 +10,10 @@ class AddMailingSetingsForm(StyleFormMixin, forms.ModelForm):
     Класс для работы с формой "AddMailingSetingsForm" для рассылки
     """
     def __init__(self, *args, **kwargs):
+        """
+        Фильтрация в форме. Вывод только тех клиентов и сообщений которые
+        принадлежать пользователю
+        """
         self.request = kwargs.pop("request")
         user = self.request.user
         super().__init__(*args, **kwargs)

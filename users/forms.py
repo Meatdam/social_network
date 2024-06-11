@@ -28,7 +28,6 @@ class UserProfileForm(StyleFormMixin, UserChangeForm):
     """
     Класс для работы с формой "UserProfileForm"
     """
-
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'image', 'email', 'phone', 'country')

@@ -11,6 +11,9 @@ from recipients.services import get_blog_from_cache
 
 
 class RecipientTemplateView(TitleMixin, TemplateView):
+    """
+    Класс для отображения шаблона
+    """
     template_name = "recipients/index.html"
     title = "Главная"
 
