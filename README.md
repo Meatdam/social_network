@@ -68,3 +68,5 @@ python manage.py start_message
 ```
 python manage.py loaddata fixtures/group.json
 ```
+Автор проекта:
+[Кузькин Илья](https://github.com/Meatdam)
